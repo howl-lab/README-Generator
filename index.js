@@ -48,6 +48,7 @@ const questions = [
         choices: [
             'MIT',
             'Apache',
+            'WTFPL'
         ],
         default: 'badge unknown'
     },
@@ -75,14 +76,16 @@ function writeToFile(fileName, data) {
     });
 }
 // TODO: Create a function to initialize app
+// inquirer to ask the questions
 function init() {
+    console.log('im hit');
     inquirer.prompt(questions).then(answers => {
         console.log('---- this is the response from the users ----', answers);
-        const markdown = generateMarkdown(answers)
+        const markdown = generateMarkdown(answers);
         console.log('--- log this here ---', markdown);
-        // writeToFile('README', markdown)
+        // writeToFile('READMEX', markdown)
     });
 };
 
 // Function call to initialize app
-// init();
+init();
