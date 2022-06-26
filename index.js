@@ -15,54 +15,55 @@ const questions = [
         message: "What's your project description?",
         name: 'description',
         type: 'input',
-        default: 'About my project goes here'
+        default: 'all that what, why, and how jazz'
     },
     {
         message: "What're your installation instructions?",
         name: 'installation',
         type: 'input',
-        default: 'How to install here'
+        default: 'Steps to install project'
     },
     {
         message: "What's your usage information",
         name: 'usage',
         type: 'input',
-        default: 'Usage info here'
+        default: 'Instructions for use'
     },
     {
         message: "What're your contribution guidelines",
         name: 'contribution',
         type: 'input',
-        default: 'contribution guideline here'
+        default: 'Contribution guideline here'
     },
     {
-        message: "What're your test instructions",
-        name: 'test',
+        message: "Give credits to resources used",
+        name: 'credits',
         type: 'input',
-        default: 'test instructions here'
+        default: 'help from the web and really smart individuals'
     },
     {
         message: "Choose your badge license",
         name: 'badge',
-        type: 'checkbox',
+        type: 'list',
         choices: [
             'MIT',
-            'Apache',
-            'WTFPL'
-        ],
-        default: 'badge unknown'
+            'Apache 2.0',
+            'WTFPL',
+            'GNU GPL 3.0',
+            'N/A'
+        ]
     },
     {
         message: "What is your GitHub username",
         name: 'GitHub',
         type: 'input',
-        default: 'GitHub name N/A'
+        default: 'some-name'
     },
     {
         message: "What is your email address",
         name: 'email',
         type: 'input',
-        default: 'no email'
+        default: 'example@email.com'
     },
 ];
 
@@ -71,10 +72,12 @@ function writeToFile(fileName, data) {
     fs.writeFile(`${fileName}.md`, data, err => {
         if (err) {
             console.log(err);
-        }
+        } else {
         console.log('done');
+        };
     });
-}
+};
+
 // TODO: Create a function to initialize app
 // inquirer to ask the questions
 function init() {
@@ -83,7 +86,7 @@ function init() {
         console.log('---- this is the response from the users ----', answers);
         const markdown = generateMarkdown(answers);
         console.log('--- log this here ---', markdown);
-        // writeToFile('READMEX', markdown)
+        writeToFile('generated_readme/README', markdown);
     });
 };
 
